@@ -1,5 +1,4 @@
-from typing import List
-from ninja_bear import GeneratorBase, Property, PropertyType, NamingConventionType
+from ninja_bear import GeneratorBase, PropertyType, NamingConventionType, DumpInfo
 
 
 class Generator(GeneratorBase):
@@ -13,12 +12,12 @@ class Generator(GeneratorBase):
     def _line_comment(self, string: str) -> str:
         return f'# {string}'
     
-    def _dump(self, type_name: str, properties: List[Property]) -> str:
+    def _dump(self, info: DumpInfo) -> str:
         # Define class.
-        code = f'class {type_name}:\n'
+        code = f'class {info.type_name}:\n'
 
         # Add properties to class.
-        for property in properties:
+        for property in info.properties:
             type = property.type
 
             if type == PropertyType.BOOL:
@@ -34,5 +33,5 @@ class Generator(GeneratorBase):
                 raise Exception('Unknown type')
             
             comment = f'  {self._line_comment(property.comment)}' if property.comment else ''
-            code += f'{' ' * self._indent}{property.name} = {value}{comment}\n'
+            code += f'{' ' * info.indent}{property.name} = {value}{comment}\n'
         return code
