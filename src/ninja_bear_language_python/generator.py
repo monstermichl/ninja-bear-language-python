@@ -13,8 +13,14 @@ class Generator(GeneratorBase):
         return f'# {string}'
     
     def _dump(self, info: DumpInfo) -> str:
+        # Add dataclass import.
+        code = 'from dataclasses import dataclass\n\n'
+
+        # Add dataclass decorator.
+        code += '@dataclass(frozen=True)\n'
+
         # Define class.
-        code = f'class {info.type_name}:\n'
+        code += f'class {info.type_name}:\n'
 
         # Add properties to class.
         for property in info.properties:

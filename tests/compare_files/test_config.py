@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
 class TestConfig:
     MyBoolean = True
     MyInteger = 142
