@@ -5,6 +5,7 @@ import unittest
 from ninja_bear import Orchestrator, Plugin
 from ninja_bear.base.generator_configuration import GeneratorConfiguration
 from src.ninja_bear_language_python.generator import Generator
+from src.ninja_bear_language_python.config import Config
 
 
 # Desired code outcome when using ninja-bear-language-python.
@@ -29,7 +30,7 @@ class Test(unittest.TestCase):
         self._test_path = pathlib.Path(__file__).parent.resolve()
         self._test_config_path = path.join(self._test_path, '..', 'example/test-config.yaml')
         self._plugins = [
-            Plugin('ninja-bear-language-python', Generator)
+            Plugin('ninja-bear-language-python', Config)
         ]
 
     def test_run_generators(self):
