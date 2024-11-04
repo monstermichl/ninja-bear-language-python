@@ -1,6 +1,7 @@
 # ninja-bear-language-python
 This [ninja-bear](https://pypi.org/project/ninja-bear) plugin adds support for the Python programming language.
 
+## Example configuration
 ```yaml
 languages:
   # -------------------------------------------------------------------------
@@ -59,4 +60,19 @@ properties:
   - type: string
     name: mySubstitutedString
     value: Sometimes I just want to scream ${myString}!  # To use the value of another property, simply use its name with ${}. E.g., ${myString}.
+```
+
+## Example output
+```python
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class TestConfig:
+    MyBoolean = True
+    MyInteger = 142
+    MyFloat = 322.0
+    MyCombinedFloat = 45724.0
+    MyDouble = 233.9
+    MyRegex = r'Test Reg(E|e)x'  # Just another RegEx.
+    MySubstitutedString = 'Sometimes I just want to scream Hello World!'
 ```
